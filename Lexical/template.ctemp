@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <fcntl.h>
+#include <malloc.h>
+
+FILE *file = NULL;
+FILE *out = NULL;
+#define SIZE_LENGTH 8
+size_t mp[][128 / SIZE_LENGTH] =
+        /// array ///
+        ;
+
+char getNextChar(){
+    return (char)fgetc(file);
+}
+
+void undoGetChar(char c){
+    if(c != -1) fseek(file, -1, SEEK_CUR);
+}
+
+void error(char* msg) {
+    printf("%s\n", msg);
+    exit(0);
+}
+
+int check(int id, char x) {
+    return (mp[id][x / SIZE_LENGTH] & (1 << (x % SIZE_LENGTH))) != 0;
+}
+
+void output(char* token, char* raw) {
+    size_t length = strlen(raw);
+    char* buffer = calloc(1, length * 2 + 1);
+    char* p = buffer;
+    for(size_t i = 0; i < length; ++i) {
+        if(raw[i] == '"' || raw[i] == '\\') *p++ = '\\';
+        *p++ = raw[i];
+    }
+    *p = 0;
+    fprintf(out, "%s \"%s\"\n", token, buffer);
+    free(buffer);
+    buffer = NULL;
+    p = NULL;
+}
+
+
+void next(){
+    int state = 0;
+    char* buffer = calloc(1, 1024), *p = buffer;
+    while (1) {
+        char c = getNextChar();
+        switch (state) {
+            /// code ///
+            default:
+                error("unknown error");
+                return;
+        }
+    }
+}
+
+
+int main(int argv, char** args) {
+    if(argv < 3) {
+        printf("Usage: lex file.grm target.lex\n");
+        return 0;
+    }
+    file = fopen(args[1], "r+");
+    if(file == NULL) {
+        printf("Open %s Error.", args[1]);
+        return 0;
+    }
+    out = fopen(args[2], "w");
+    if(file == NULL) {
+        printf("Open %s Error.", args[2]);
+        return 0;
+    }
+    next();
+    fclose(file);
+    fclose(out);
+    printf("success\n");
+}

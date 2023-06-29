@@ -1,0 +1,86 @@
+G[program];
+
+stmt-sequence ::= statement stmt-sequence_rOUGy;
+statement ::= repeat-stmt;
+statement ::= assign-stmt;
+statement ::= write-stmt;
+statement ::= IF exp THEN stmt-sequence if-stmt_NNm7H;
+statement ::= READ ID <read,0>;
+if-stmt_NNm7H ::= END <if_no_else,0>;
+if-stmt_NNm7H ::= ELSE stmt-sequence END <if_stmt,0>;
+repeat-stmt ::= REPEAT stmt-sequence UNTIL exp <repeat,0>;
+assign-stmt ::= ID ASSIGN exp <assign,0>;
+write-stmt ::= WRITE exp <write,0>;
+exp_rvuor ::= comparison-op simple-exp <exp,0>;
+exp_rvuor ::= <EPS>;
+exp ::= simple-exp exp_rvuor;
+comparison-op ::= LT;
+comparison-op ::= EQ;
+addop ::= PLUS;
+addop ::= MINUS;
+term ::= factor term_yx1Z4;
+mulop ::= MUL;
+mulop ::= DIV;
+factor ::= LP exp RP <factor_lp_rp,0>;
+factor ::= NUMBER <factor,0>;
+factor ::= ID <factor,0>;
+stmt-sequence_rOUGy ::= SEM statement <stmt,0> stmt-sequence_rOUGy;
+stmt-sequence_rOUGy ::= <EPS>;
+term_yx1Z4 ::= mulop factor <exp,0> term_yx1Z4;
+term_yx1Z4 ::= <EPS>;
+simple-exp ::= LP exp RP <factor_lp_rp,0> term_yx1Z4 simple-exp_NpL9c;
+simple-exp ::= NUMBER <factor,0> term_yx1Z4 simple-exp_NpL9c;
+simple-exp ::= ID <factor,0> term_yx1Z4 simple-exp_NpL9c;
+simple-exp_NpL9c ::= addop term <exp,0> simple-exp_NpL9c;
+simple-exp_NpL9c ::= <EPS>;
+program ::= IF exp THEN stmt-sequence if-stmt_NNm7H stmt-sequence_rOUGy <prog,0>;
+program ::= READ ID <read,0> stmt-sequence_rOUGy <prog,0>;
+program ::= REPEAT stmt-sequence UNTIL exp <repeat,0> stmt-sequence_rOUGy <prog,0>;
+program ::= ID ASSIGN exp <assign,0> stmt-sequence_rOUGy <prog,0>;
+program ::= WRITE exp <write,0> stmt-sequence_rOUGy <prog,0>;
+
+non-terminal {
+if-stmt_NNm7H
+exp
+exp_rvuor
+stmt-sequence
+repeat-stmt
+term
+simple-exp_NpL9c
+term_yx1Z4
+mulop
+comparison-op
+factor
+assign-stmt
+addop
+statement
+stmt-sequence_rOUGy
+program
+write-stmt
+simple-exp
+};
+
+terminal {
+WRITE
+UNTIL
+IF
+ASSIGN
+THEN
+REPEAT
+ID
+MUL
+READ
+NUMBER
+EQ
+LP
+PLUS
+MINUS
+LT
+END
+DIV
+<EPS>
+RP
+SEM
+ELSE
+};
+

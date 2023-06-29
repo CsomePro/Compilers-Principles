@@ -1,0 +1,213 @@
+G[program];
+
+definition_fmzOX ::= variable-definition_s8T9J;
+definition_fmzOX ::= LP parameters RP compound-stmt <func_def,0>;
+definition_42Rlj ::= variable-definition_s8T9J;
+definition_42Rlj ::= LP parameters RP compound-stmt <func_def,0>;
+definition_TcLWp ::= variable-definition_s8T9J;
+definition_TcLWp ::= LP parameters RP compound-stmt <func_def,0>;
+definition ::= INT ID definition_fmzOX;
+definition ::= FLOAT ID definition_42Rlj;
+definition ::= VOID ID definition_TcLWp;
+variable-definition_s8T9J ::= SEM <var_3,0>;
+variable-definition_s8T9J ::= LSB NUMBER RSB SEM <var_6,0>;
+parameters_e9HbN ::= <EPS>;
+parameters_e9HbN ::= ID parameter_s95pa parameter-list_zw10s;
+parameters ::= VOID parameters_e9HbN;
+parameters ::= INT ID parameter_s95pa parameter-list_zw10s;
+parameters ::= FLOAT ID parameter_s95pa parameter-list_zw10s;
+parameter_s95pa ::= <param_id,0>;
+parameter_s95pa ::= LSB RSB <param_array,0>;
+compound-stmt_vjPz4 ::= statement-list CB <compound_4,0>;
+compound-stmt_vjPz4 ::= CB <compound_3,0>;
+compound-stmt_DBU4T ::= statement-list CB <compound_2,0>;
+compound-stmt_DBU4T ::= CB <compound_1,0>;
+compound-stmt_DBU4T ::= variable-definition local-definitions_aclzi compound-stmt_vjPz4;
+compound-stmt ::= OB compound-stmt_DBU4T;
+statement ::= return-stmt;
+statement ::= DO statement WHILE LP expression RP SEM <while_stmt,0>;
+statement ::= OB compound-stmt_DBU4T;
+statement ::= SEM <exp_empty,0>;
+statement ::= IF LP expression RP statement condition-stmt_GPSNw;
+statement ::= ID statement_naRbe;
+statement ::= LP expression RP <factor,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0>;
+statement ::= NUMBER <factor_const,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0>;
+condition-stmt_GPSNw ::= <if_stmt,0>;
+condition-stmt_GPSNw ::= ELSE statement <if_else,0>;
+return-stmt_Wb3oK ::= SEM <return_void,0>;
+return-stmt_Wb3oK ::= expression SEM <return_exp,0>;
+return-stmt ::= RETURN return-stmt_Wb3oK;
+expression ::= ID expression_SxZsO;
+expression ::= LP expression RP <factor,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC;
+expression ::= NUMBER <factor_const,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC;
+variable_W9Jo6 ::= <var_id,0>;
+variable_W9Jo6 ::= LSB expression RSB <var_array,0>;
+simple-expression_ecbbC ::= <EPS>;
+simple-expression_ecbbC ::= LTE additive-expression <exp,0>;
+simple-expression_ecbbC ::= LT additive-expression <exp,0>;
+simple-expression_ecbbC ::= GT additive-expression <exp,0>;
+simple-expression_ecbbC ::= GTE additive-expression <exp,0>;
+simple-expression_ecbbC ::= EQ additive-expression <exp,0>;
+simple-expression_ecbbC ::= NE additive-expression <exp,0>;
+additive-expression ::= term additive-expression_O3Aji;
+addop ::= PLUS;
+addop ::= MINUS;
+term ::= factor term_OYkMB;
+mulop ::= MUL;
+mulop ::= DIV;
+mulop ::= MOD;
+factor_K6sSM ::= LP call_XDmx6;
+factor_K6sSM ::= variable_W9Jo6;
+factor ::= LP expression RP <factor,0>;
+factor ::= NUMBER <factor_const,0>;
+factor ::= ID factor_K6sSM;
+call_XDmx6_WtfM2_bRcjM ::= <var_array,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC argument-list_ooEbr RP <call_args,0>;
+call_XDmx6_WtfM2_bRcjM ::= ASSIGN expression <exp_assign_array,0> argument-list_ooEbr RP <call_args,0>;
+call_XDmx6_WtfM2 ::= LP call_XDmx6 term_OYkMB additive-expression_O3Aji simple-expression_ecbbC argument-list_ooEbr RP <call_args,0>;
+call_XDmx6_WtfM2 ::= <var_id,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC argument-list_ooEbr RP <call_args,0>;
+call_XDmx6_WtfM2 ::= LSB expression RSB call_XDmx6_WtfM2_bRcjM;
+call_XDmx6_WtfM2 ::= ASSIGN expression <exp_assign_id,0> argument-list_ooEbr RP <call_args,0>;
+call_XDmx6 ::= RP <call_non_arg,0>;
+call_XDmx6 ::= ID call_XDmx6_WtfM2;
+call_XDmx6 ::= LP expression RP <factor,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC argument-list_ooEbr RP <call_args,0>;
+call_XDmx6 ::= NUMBER <factor_const,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC argument-list_ooEbr RP <call_args,0>;
+local-definitions_aclzi ::= variable-definition <local_list,0> local-definitions_aclzi;
+local-definitions_aclzi ::= <EPS>;
+argument-list_ooEbr ::= COM expression <args_list,0> argument-list_ooEbr;
+argument-list_ooEbr ::= <EPS>;
+definition-list_KBZlB ::= definition <definition,0> definition-list_KBZlB;
+definition-list_KBZlB ::= <EPS>;
+additive-expression_O3Aji ::= addop term <exp,0> additive-expression_O3Aji;
+additive-expression_O3Aji ::= <EPS>;
+parameter ::= INT ID parameter_s95pa;
+parameter ::= FLOAT ID parameter_s95pa;
+parameter ::= VOID ID parameter_s95pa;
+term_OYkMB ::= mulop factor <exp,0> term_OYkMB;
+term_OYkMB ::= <EPS>;
+parameter-list_zw10s ::= COM parameter <param_list,0> parameter-list_zw10s;
+parameter-list_zw10s ::= <EPS>;
+variable-definition ::= INT ID variable-definition_s8T9J;
+variable-definition ::= FLOAT ID variable-definition_s8T9J;
+variable-definition ::= VOID ID variable-definition_s8T9J;
+statement-list_sIAYE_2Jq9S ::= <var_array,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0> statement-list_YIg6g;
+statement-list_sIAYE_2Jq9S ::= ASSIGN expression <exp_assign_array,0> SEM <exp_sem,0> statement-list_YIg6g;
+statement-list_sIAYE ::= LP call_XDmx6 term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0> statement-list_YIg6g;
+statement-list_sIAYE ::= <var_id,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0> statement-list_YIg6g;
+statement-list_sIAYE ::= LSB expression RSB statement-list_sIAYE_2Jq9S;
+statement-list_sIAYE ::= ASSIGN expression <exp_assign_id,0> SEM <exp_sem,0> statement-list_YIg6g;
+statement-list ::= DO statement WHILE LP expression RP SEM <while_stmt,0> statement-list_YIg6g;
+statement-list ::= OB compound-stmt_DBU4T statement-list_YIg6g;
+statement-list ::= SEM <exp_empty,0> statement-list_YIg6g;
+statement-list ::= IF LP expression RP statement condition-stmt_GPSNw statement-list_YIg6g;
+statement-list ::= ID statement-list_sIAYE;
+statement-list ::= RETURN return-stmt_Wb3oK statement-list_YIg6g;
+statement-list ::= LP expression RP <factor,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0> statement-list_YIg6g;
+statement-list ::= NUMBER <factor_const,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0> statement-list_YIg6g;
+statement-list_YIg6g ::= statement <stmt_list,0> statement-list_YIg6g;
+statement-list_YIg6g ::= <EPS>;
+program_ZGQdX ::= variable-definition_s8T9J definition-list_KBZlB <program,0>;
+program_ZGQdX ::= LP parameters RP compound-stmt <func_def,0> definition-list_KBZlB <program,0>;
+program_mTO79 ::= variable-definition_s8T9J definition-list_KBZlB <program,0>;
+program_mTO79 ::= LP parameters RP compound-stmt <func_def,0> definition-list_KBZlB <program,0>;
+program_jzqRF ::= variable-definition_s8T9J definition-list_KBZlB <program,0>;
+program_jzqRF ::= LP parameters RP compound-stmt <func_def,0> definition-list_KBZlB <program,0>;
+program ::= INT ID program_ZGQdX;
+program ::= FLOAT ID program_mTO79;
+program ::= VOID ID program_jzqRF;
+statement_naRbe_XCs0t ::= ASSIGN expression <exp_assign_array,0> SEM <exp_sem,0>;
+statement_naRbe_XCs0t ::= <var_array,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0>;
+statement_naRbe ::= LP call_XDmx6 term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0>;
+statement_naRbe ::= ASSIGN expression <exp_assign_id,0> SEM <exp_sem,0>;
+statement_naRbe ::= LSB expression RSB statement_naRbe_XCs0t;
+statement_naRbe ::= <var_id,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC SEM <exp_sem,0>;
+expression_SxZsO_Eb1aF ::= ASSIGN expression <exp_assign_array,0>;
+expression_SxZsO_Eb1aF ::= <var_array,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC;
+expression_SxZsO ::= LP call_XDmx6 term_OYkMB additive-expression_O3Aji simple-expression_ecbbC;
+expression_SxZsO ::= ASSIGN expression <exp_assign_id,0>;
+expression_SxZsO ::= LSB expression RSB expression_SxZsO_Eb1aF;
+expression_SxZsO ::= <var_id,0> term_OYkMB additive-expression_O3Aji simple-expression_ecbbC;
+
+non-terminal {
+local-definitions_aclzi
+additive-expression_O3Aji
+program_mTO79
+definition_42Rlj
+compound-stmt
+program
+definition_TcLWp
+definition_fmzOX
+statement_naRbe_XCs0t
+addop
+return-stmt_Wb3oK
+argument-list_ooEbr
+parameters
+mulop
+parameter-list_zw10s
+statement-list_YIg6g
+expression_SxZsO_Eb1aF
+additive-expression
+factor_K6sSM
+compound-stmt_vjPz4
+term_OYkMB
+statement
+return-stmt
+compound-stmt_DBU4T
+variable_W9Jo6
+parameter
+program_ZGQdX
+term
+definition-list_KBZlB
+parameters_e9HbN
+variable-definition_s8T9J
+condition-stmt_GPSNw
+statement_naRbe
+call_XDmx6_WtfM2
+variable-definition
+statement-list_sIAYE
+call_XDmx6_WtfM2_bRcjM
+definition
+parameter_s95pa
+expression_SxZsO
+factor
+program_jzqRF
+simple-expression_ecbbC
+statement-list_sIAYE_2Jq9S
+statement-list
+call_XDmx6
+expression
+};
+
+terminal {
+WHILE
+EQ
+LP
+COM
+RETURN
+ELSE
+MINUS
+LSB
+SEM
+MOD
+LTE
+CB
+ASSIGN
+DO
+ID
+RSB
+FLOAT
+NE
+IF
+<EPS>
+GT
+INT
+OB
+GTE
+LT
+NUMBER
+RP
+PLUS
+MUL
+DIV
+VOID
+};
+

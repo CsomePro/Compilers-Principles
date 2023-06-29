@@ -1,0 +1,145 @@
+G[ program ];
+additive-expression ::= term additive-expression_ ;
+additive-expression_ ::= <EPS> | addop term <exp,0> additive-expression_ ;
+addop ::= MINUS | PLUS ;
+argument-list_ ::= <EPS> | COMMA expression <arg-list,0> argument-list_ ;
+arguments ::= <EPS> <arg,0> | expression argument-list_ ;
+compound-stmt ::= LBRACE local-definitions statement-list RBRACE <compound,0> ;
+definition ::= float IDENTIFIER definition_ | int IDENTIFIER definition__ | void IDENTIFIER definition___ ;
+definition-list_ ::= <EPS> | definition <def-list,0> definition-list_ ;
+definition_ ::= LPAREN parameters RPAREN compound-stmt <fun-def,0> | variable-definition_ ;
+definition__ ::= LPAREN parameters RPAREN compound-stmt <fun-def,0> | variable-definition__ ;
+definition___ ::= LPAREN parameters RPAREN compound-stmt <fun-def,0> | variable-definition___ ;
+expression ::= IDENTIFIER expression__ | LPAREN expression RPAREN <exp_paren,0> term_ additive-expression_ simple-expression_ | NUMBER term_ additive-expression_ simple-expression_ ;
+expression_ ::= LPAREN arguments RPAREN <call,0> term_ additive-expression_ simple-expression_ | variable_ term_ additive-expression_ simple-expression_ ;
+expression__ ::= <EPS> expression___ | LBRACKET expression RBRACKET <arr,0> expression____ | LPAREN arguments RPAREN <call,0> term_ additive-expression_ simple-expression_ ;
+expression___ ::= ASSIGN expression <assign,0> | term_ additive-expression_ simple-expression_ ;
+expression____ ::= ASSIGN expression <assign,0> | term_ additive-expression_ simple-expression_ ;
+factor ::= IDENTIFIER factor_ | LPAREN expression RPAREN <exp_paren,0> | NUMBER ;
+factor_ ::= LPAREN arguments RPAREN <call,0> | variable_ ;
+function-definition ::= type-indicator IDENTIFIER LPAREN parameters RPAREN compound-stmt <fun-def,0> ;
+local-definitions ::= <EPS> <local-defs_2,0> local-definitions_ ;
+local-definitions_ ::= <EPS> | variable-definition <local-defs_1,0> local-definitions_ ;
+mulop ::= DIVIDE | MOD | MULTIPLY ;
+parameter ::= type-indicator IDENTIFIER parameter_ ;
+parameter-list_ ::= <EPS> | COMMA parameter <par-list,0> parameter-list_ ;
+parameter_ ::= LBRACKET RBRACKET <par-arr,0> | <par-var,0> ;
+parameters ::= float IDENTIFIER parameters_ | int IDENTIFIER parameters_ | void parameters__ ;
+parameters_ ::= LBRACKET RBRACKET <par-arr,0> parameter-list_ | <par-var,0> parameter-list_ ;
+parameters__ ::= IDENTIFIER parameters_ | <par-void,0> ;
+program ::= float IDENTIFIER program_ | int IDENTIFIER program__ | void IDENTIFIER program___ ;
+program_ ::= LPAREN parameters RPAREN compound-stmt <fun-def,0> definition-list_ | variable-definition_ definition-list_ ;
+program__ ::= LPAREN parameters RPAREN compound-stmt <fun-def,0> definition-list_ | variable-definition__ definition-list_ ;
+program___ ::= LPAREN parameters RPAREN compound-stmt <fun-def,0> definition-list_ | variable-definition___ definition-list_ ;
+relop ::= EQ | GEQ | GT | LEQ | LT | NEQ ;
+simple-expression ::= term additive-expression_ simple-expression_ ;
+simple-expression_ ::= <EPS> | relop additive-expression <exp,0> ;
+statement ::= IDENTIFIER statement____ | LBRACE local-definitions statement-list RBRACE <compound,0> | LPAREN expression RPAREN <exp_paren,0> term_ additive-expression_ simple-expression_ SEMI <expression_1,0> | NUMBER term_ additive-expression_ simple-expression_ SEMI <expression_1,0> | SEMI <expression_2,0> | do statement while LPAREN expression RPAREN SEMI <dowhile,0> | if LPAREN expression RPAREN statement statement_ | return statement__ ;
+statement-list ::= <EPS> <statements_2,0> statement-list_ ;
+statement-list_ ::= <EPS> | statement <local-defs_1,0> statement-list_ ;
+statement_ ::= else statement <if_2,0> | <if_1,0> ;
+statement__ ::= SEMI <return_1,0> | expression SEMI <return_2,0> ;
+statement___ ::= LPAREN arguments RPAREN <call,0> term_ additive-expression_ simple-expression_ SEMI <expression_1,0> | variable_ term_ additive-expression_ simple-expression_ SEMI <expression_1,0> ;
+statement____ ::= <EPS> statement_____ | LBRACKET expression RBRACKET <arr,0> statement______ | LPAREN arguments RPAREN <call,0> term_ additive-expression_ simple-expression_ SEMI <expression_1,0> ;
+statement_____ ::= ASSIGN expression <assign,0> SEMI <expression_1,0> | term_ additive-expression_ simple-expression_ SEMI <expression_1,0> ;
+statement______ ::= ASSIGN expression <assign,0> SEMI <expression_1,0> | term_ additive-expression_ simple-expression_ SEMI <expression_1,0> ;
+term ::= IDENTIFIER term__ | LPAREN expression RPAREN <exp_paren,0> term_ | NUMBER term_ ;
+term_ ::= <EPS> | mulop factor <exp,0> term_ ;
+term__ ::= LPAREN arguments RPAREN <call,0> term_ | variable_ term_ ;
+type-indicator ::= float | int | void ;
+variable ::= IDENTIFIER variable_ ;
+variable-definition ::= float IDENTIFIER variable-definition_ | int IDENTIFIER variable-definition__ | void IDENTIFIER variable-definition___ ;
+variable-definition_ ::= LBRACKET NUMBER RBRACKET SEMI <arr-def,0> | SEMI <var-def,0> ;
+variable-definition__ ::= LBRACKET NUMBER RBRACKET SEMI <arr-def,0> | SEMI <var-def,0> ;
+variable-definition___ ::= LBRACKET NUMBER RBRACKET SEMI <arr-def,0> | SEMI <var-def,0> ;
+variable_ ::= <EPS> | LBRACKET expression RBRACKET <arr,0> ;
+
+non-terminal{
+additive-expression
+additive-expression_
+addop
+argument-list_
+arguments
+compound-stmt
+definition
+definition-list_
+definition_
+definition__
+definition___
+expression
+expression_
+expression__
+expression___
+expression____
+factor
+factor_
+function-definition
+local-definitions
+local-definitions_
+mulop
+parameter
+parameter-list_
+parameter_
+parameters
+parameters_
+parameters__
+program
+program_
+program__
+program___
+relop
+simple-expression
+simple-expression_
+statement
+statement-list
+statement-list_
+statement_
+statement__
+statement___
+statement____
+statement_____
+statement______
+term
+term_
+term__
+type-indicator
+variable
+variable-definition
+variable-definition_
+variable-definition__
+variable-definition___
+variable_
+};
+
+terminal{
+ASSIGN
+COMMA
+DIVIDE
+EQ
+GEQ
+GT
+IDENTIFIER
+LBRACE
+LBRACKET
+LEQ
+LPAREN
+LT
+MINUS
+MOD
+MULTIPLY
+NEQ
+NUMBER
+PLUS
+RBRACE
+RBRACKET
+RPAREN
+SEMI
+do
+else
+float
+if
+int
+return
+void
+while
+};

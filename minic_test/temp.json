@@ -1,0 +1,223 @@
+{
+  "name": "program",
+  "children": [
+    {
+      "name": "def-list",
+      "children": [
+        {
+          "name": "int(*):add",
+          "children": [
+            {
+              "name": "param-list",
+              "children": [
+                {
+                  "name": "int:a",
+                  "children": []
+                },
+                {
+                  "name": "int:b",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "name": "compound",
+              "children": [
+                {
+                  "name": "return",
+                  "children": [
+                    {
+                      "name": "+",
+                      "children": [
+                        {
+                          "name": "var:a",
+                          "children": []
+                        },
+                        {
+                          "name": "var:b",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "int(*):main",
+          "children": [
+            {
+              "name": "void",
+              "children": []
+            },
+            {
+              "name": "compound",
+              "children": [
+                {
+                  "name": "def-list",
+                  "children": [
+                    {
+                      "name": "int[6]:a",
+                      "children": []
+                    },
+                    {
+                      "name": "int:i",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "stmt-list",
+                  "children": [
+                    {
+                      "name": "assign",
+                      "children": [
+                        {
+                          "name": "i",
+                          "children": []
+                        },
+                        {
+                          "name": "1",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "assign-array",
+                      "children": [
+                        {
+                          "name": "a",
+                          "children": []
+                        },
+                        {
+                          "name": "0",
+                          "children": []
+                        },
+                        {
+                          "name": "1",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "while",
+                      "children": [
+                        {
+                          "name": "compound",
+                          "children": [
+                            {
+                              "name": "assign-array",
+                              "children": [
+                                {
+                                  "name": "a",
+                                  "children": []
+                                },
+                                {
+                                  "name": "var:i",
+                                  "children": []
+                                },
+                                {
+                                  "name": "*",
+                                  "children": [
+                                    {
+                                      "name": "var[]:a",
+                                      "children": [
+                                        {
+                                          "name": "-",
+                                          "children": [
+                                            {
+                                              "name": "var:i",
+                                              "children": []
+                                            },
+                                            {
+                                              "name": "1",
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "name": "add(*)",
+                                      "children": [
+                                        {
+                                          "name": "args-list",
+                                          "children": [
+                                            {
+                                              "name": "var[]:a",
+                                              "children": [
+                                                {
+                                                  "name": "-",
+                                                  "children": [
+                                                    {
+                                                      "name": "var:i",
+                                                      "children": []
+                                                    },
+                                                    {
+                                                      "name": "1",
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "name": "var[]:a",
+                                              "children": [
+                                                {
+                                                  "name": "var:i",
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "<",
+                          "children": [
+                            {
+                              "name": "var:i",
+                              "children": []
+                            },
+                            {
+                              "name": "6",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "return",
+                      "children": [
+                        {
+                          "name": "var[]:a",
+                          "children": [
+                            {
+                              "name": "5",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
